@@ -1,0 +1,23 @@
+name: Check diff
+
+on: [push]
+
+jobs:  
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name:
+      uses: dorny/paths-filter@v2
+      id: diff
+      with:
+        filters: |
+          LOREMS:
+            - 'lorems/**'
+          IPSUMS:
+            - 'ipsums/**'
+          DOLORS:
+            - 'dolors/**'
+          SITAMETS:
+            - 'sitamets/**'
+      run: echo "${{ steps.diff.outputs }}"
