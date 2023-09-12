@@ -1,4 +1,4 @@
-name: Check diff
+name: Execute based on Features
 
 on: [pull_request]
 
@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Checkout code 
       uses: actions/checkout@v4
-    - name: Get paths
+    - name: Get features
       uses: dorny/paths-filter@v2
       id: diff
       with:
