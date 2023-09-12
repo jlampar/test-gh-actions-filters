@@ -23,4 +23,4 @@ jobs:
           SITAMETS:
             - 'sitamets/**'
     - name: Echo diff
-      run: echo "${{ steps.diff.outputs }}"
+      run: echo "${{ fromJSON(steps.diff.outputs) }}"
