@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name:
+    - name: Get paths
       uses: dorny/paths-filter@v2
       id: diff
       with:
@@ -20,4 +20,5 @@ jobs:
             - 'dolors/**'
           SITAMETS:
             - 'sitamets/**'
+    - name: Echo diff
       run: echo "${{ steps.diff.outputs }}"
