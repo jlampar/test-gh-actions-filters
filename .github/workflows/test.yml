@@ -23,4 +23,4 @@ jobs:
           SITAMETS:
             - 'sitamets/**'
     - name: Join
-      run: echo "${{ steps.diff.outputs }}"
+      run: echo "${{ join(fromJSON(steps.diff.outputs), ':') }}"
