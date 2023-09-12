@@ -22,5 +22,5 @@ jobs:
             - 'dolors/**'
           SITAMETS:
             - 'sitamets/**'
-    - name: Echo diff
-      run: echo "${{fromJSON(steps.diff.outputs)}}"
+    - name: Join
+      run: echo "${{ join(steps.diff.outputs, ':') }}"
