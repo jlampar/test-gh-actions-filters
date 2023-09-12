@@ -14,14 +14,13 @@ jobs:
       id: diff
       with:
         filters: |
-          LOREMS:
-            - 'lorems/**'
-          IPSUMS:
-            - 'ipsums/**'
-          DOLORS:
-            - 'dolors/**'
-          SITAMETS:
-            - 'sitamets/**'
+          LOREMIPSUM:
+            - 'lorem/**'
+            - 'ipsum/**'
+          DOLOR:
+            - 'dolor/**'
+          SITAMET:
+            - 'sitamet/**'
     - name: Compose RegExp
       id: regexp
       run: echo "REGEXP='${{ join(fromJson(steps.diff.outputs.changes), '\|') }}.*:.*\/\/'" >> $GITHUB_OUTPUT
