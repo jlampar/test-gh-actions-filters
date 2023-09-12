@@ -22,5 +22,10 @@ jobs:
             - 'dolors/**'
           SITAMETS:
             - 'sitamets/**'
-    - name: Join
-      run: echo "detox test -c ios.sim.debug -t='${{ join(fromJson(steps.diff.outputs.changes), '\|') }}.*:.*\/\/'"
+    - name: Compose RegExp
+      id: regexp
+      run: echo "REGEXP='${{ join(fromJson(steps.diff.outputs.changes), '\|') }}.*:.*\/\/'" >> "$GITHUB_OUTPUT"
+    - name: Execute Detox
+      env:
+        REGEXP: ${{ steps.regexp.outputs.REGEXP }}
+      run: echo "detox test -c ios.sim.debug -t=$REGEXP"
