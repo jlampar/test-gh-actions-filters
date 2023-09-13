@@ -23,8 +23,6 @@ jobs:
             - 'sitamet/**'
     - name: Compose RegExp
       id: regexp
-      run: echo "REGEXP='${{ join(fromJson(steps.diff.outputs.changes), '\|') }}.*:.*\/\/'" >> $GITHUB_OUTPUT
+      run: echo "REGEXP='\(${{ join(fromJson(steps.diff.outputs.changes), '\|') }}\):.*\/\/'" >> $GITHUB_ENV
     - name: Execute Detox
-      env:
-        REGEXP: ${{ steps.regexp.outputs.REGEXP }}
-      run: echo "detox test -c ios.sim.debug -t=$REGEXP"
+      run: echo "detox test -c ios.sim.debug -testNamePattern=$REGEXP"
