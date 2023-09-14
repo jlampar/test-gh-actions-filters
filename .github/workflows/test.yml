@@ -23,6 +23,9 @@ jobs:
             - 'sitamet/**'
     - name: Compose RegExp
       id: regexp
-      run: echo "REGEXP='\(${{ join(fromJson(steps.diff.outputs.changes), '\|') }}\):.*\/\/'" >> $GITHUB_ENV
+      if: steps.diff.outputs.changes[0] != null
+      run: echo "REGEXP='\(CORE\|${{ join(fromJson(steps.diff.outputs.changes), '\|') }}\):.*\/\/'" >> $GITHUB_ENV
+      if: steps.diff.outputs.changes[0] == null
+      run: echo "REGEXP='\(CORE\):.*\/\/'" >> $GITHUB_ENV
     - name: Execute Detox
       run: echo "detox test -c ios.sim.debug -testNamePattern=$REGEXP"
