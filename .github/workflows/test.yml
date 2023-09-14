@@ -22,10 +22,10 @@ jobs:
           SITAMET:
             - 'sitamet/**'
     - name: Compose RegExp if changes not empty
-      if: steps.diff.outputs.changes[0] != null
+      if: fromJson(steps.diff.outputs.changes)[0] != null
       run: echo "REGEXP='\(CORE\|${{ join(fromJson(steps.diff.outputs.changes), '\|') }}\):.*\/\/'" >> $GITHUB_ENV
     - name: Compose RegExp if changes empty
-      if: steps.diff.outputs.changes[0] == null
+      if: fromJson(steps.diff.outputs.changes)[0] == null
       run: echo "REGEXP='\(CORE\):.*\/\/'" >> $GITHUB_ENV
     - name: Execute Detox
       run: echo "detox test -c ios.sim.debug -testNamePattern=$REGEXP"
