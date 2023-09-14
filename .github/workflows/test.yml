@@ -15,10 +15,10 @@ jobs:
       with:
         filters: |
           LOREMIPSUM:
-            - 'lorem/**'
+            - 'lorem/c.txt'
             - 'ipsum/**'
           DOLOR:
-            - 'dolor/**'
+            - 'lorem/c.txt'
           SITAMET:
             - 'sitamet/**'
     - name: Compose RegExp
